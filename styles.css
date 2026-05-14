@@ -41,6 +41,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .container { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+@media (max-width: 520px) { .container { padding: 0 18px; } }
 
 /* ===== Typography ===== */
 h1, h2, h3, h4 { margin: 0; line-height: 1.02; letter-spacing: -0.02em; }
@@ -307,11 +308,21 @@ em, .italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 4
   .cd-unit { padding: 0 18px; }
   .cd-num { font-size: 2.6rem; }
 }
+@media (max-width: 480px) {
+  .countdown { grid-template-columns: repeat(2, 1fr); justify-content: stretch; gap: 12px 0; }
+  .cd-unit { padding: 10px 8px; border-right: 0; border-bottom: 1px solid rgba(250,245,230,0.18); }
+  .cd-unit:nth-child(odd) { border-right: 1px solid rgba(250,245,230,0.18); }
+  .cd-unit:nth-last-child(-n+2) { border-bottom: 0; }
+  .cd-num { font-size: 2.2rem; }
+}
 
 .menu-toggle {
   display: none;
   background: none; border: 0;
   cursor: pointer;
+  padding: 10px 12px;
+  min-width: 44px;
+  min-height: 44px;
   color: var(--paper);
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.78rem;
@@ -355,9 +366,10 @@ em, .italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 4
 .hero-title {
   font-family: 'Fraunces', serif;
   font-weight: 500;
-  font-size: clamp(3.4rem, 11vw, 11rem);
+  font-size: clamp(2.6rem, 11vw, 11rem);
   line-height: 0.88;
   letter-spacing: -0.045em;
+  word-break: break-word;
 }
 .hero-title .row { display: block; }
 .hero-title .row.indent { padding-left: clamp(60px, 12vw, 220px); }
@@ -1237,6 +1249,40 @@ em, .italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 4
   .committee .person { grid-template-columns: 1fr; gap: 6px; }
 }
 
+/* Technical Program Committee — compact multi-column */
+.tpc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  columns: 2;
+  column-gap: 48px;
+  column-rule: 1px dashed var(--rule-d);
+}
+.tpc-list li {
+  break-inside: avoid;
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--rule-d);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.tpc-list .n {
+  font-family: 'Fraunces', serif;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.tpc-list .a {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+@media (max-width: 720px) {
+  .tpc-list { columns: 1; }
+}
+
 /* Fees / pricing table */
 .fees {
   display: grid;
@@ -1402,6 +1448,92 @@ em, .italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 4
 }
 .fees-feature .fees-lg .fee.featured .fee-note { border-top-color: rgba(250, 245, 230, 0.4); }
 .fees-feature .fees-footnote { border-color: var(--rust); }
+
+/* Fee group (Early / Late) */
+.fees-group { margin-top: 32px; }
+.fees-group + .fees-group { margin-top: 48px; }
+.fees-group-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--rust);
+}
+.fees-group-head .tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: var(--rust);
+  color: var(--paper);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+.fees-group-head .tag-late {
+  background: transparent;
+  color: var(--rust);
+  border: 1px solid var(--rust);
+}
+.fees-group-head h3 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 500;
+}
+.fees-group-head h3 em { color: var(--rust); font-style: italic; }
+.fees-group-head .muted {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-left: 4px;
+}
+.fees-late .fee { padding: 24px 22px; }
+.fees-late .fee .price { font-size: 2.6rem; }
+
+/* Registration rules */
+.reg-rules {
+  margin-top: 48px;
+  padding: 28px 32px;
+  background: var(--paper);
+  border: 1px solid var(--rule-d);
+}
+.reg-rules h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 18px;
+}
+.reg-rules ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.reg-rules li {
+  padding-left: 22px;
+  position: relative;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.reg-rules li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--rust);
+  font-weight: 600;
+}
+@media (max-width: 720px) {
+  .fees-late { grid-template-columns: 1fr; }
+  .reg-rules { padding: 22px 18px; }
+}
 @media (max-width: 720px) {
   .fees-lg { grid-template-columns: 1fr; }
   .fees-lg .fee { border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; }
@@ -1574,7 +1706,10 @@ em, .italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 4
     border-top: 1px solid var(--rule);
     border-bottom: 1px solid var(--rule);
     gap: 18px;
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
   }
+  .topbar.open .nav-links a { font-size: 0.9rem; padding: 12px 0; }
   .section { padding: 90px 0; }
   .section-head { grid-template-columns: 1fr; gap: 16px; margin-bottom: 56px; }
   .section-head .lede { grid-column: 1; }
@@ -1589,7 +1724,32 @@ em, .italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 4
   .page-head { padding: 130px 0 80px; }
   .tide-items { grid-template-columns: 1fr; }
 }
+@media (max-width: 720px) {
+  .topbar .btn.cta { display: none; }
+  .topbar-inner { gap: 16px; }
+  .tide::before, .tide::after { display: none; }
+  .page-meta { gap: 18px 24px; margin-top: 36px; }
+  .hero-title .num { display: block; margin-left: 0; margin-top: 10px; }
+  .hero-meta .row { flex-direction: column; gap: 4px; align-items: flex-start; }
+  .btn.cta-lg { padding: 16px 22px; font-size: 0.78rem; }
+  .cta-actions-row .btn { padding: 16px 22px; font-size: 0.76rem; }
+  .gallery .photo { aspect-ratio: 4/3; height: auto; }
+  .fees-feature .fees-lg .fee.featured { transform: none; box-shadow: 4px 4px 0 var(--abyss); }
+}
 @media (max-width: 520px) {
   .register { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; }
+  .section { padding: 64px 0; }
+  .section-head { margin-bottom: 36px; }
+  .footer { padding: 72px 0 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .tide-track { animation: none; }
 }
