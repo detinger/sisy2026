@@ -505,7 +505,7 @@ em, .italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 4
 }
 .hero-title .row.row-small {
   font-size: 0.28em;
-  line-height: 1.05;
+  line-height: 1.25;
   letter-spacing: -0.045em;
 }
 .hero-title .row.indent { padding-left: clamp(60px, 12vw, 110px); }
@@ -620,7 +620,7 @@ em, .italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 4
 .lat-marker {
   position: absolute;
   left: 32px;
-  top: 50%;
+  top: 65%;
   transform: translateY(-50%) rotate(-90deg);
   transform-origin: left center;
   font-family: 'JetBrains Mono', monospace;
