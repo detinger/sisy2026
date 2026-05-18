@@ -929,13 +929,16 @@ em, .italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 4
 .bottle {
   background: var(--paper);
   color: var(--ink);
-  padding: 44px;
+  padding: 0;
   position: relative;
   border: 1px solid var(--rule-d);
   display: flex;
   flex-direction: column;
-  gap: 28px;
   overflow: hidden;
+}
+.bottle > :not(.speaker-portrait) {
+  margin-left: 44px;
+  margin-right: 44px;
 }
 .bottle::before {
   content: "";
@@ -946,7 +949,25 @@ em, .italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 4
   background-size: cover;
   pointer-events: none;
 }
+.speaker-portrait {
+  margin: 0;
+  height: 360px;
+  background: var(--abyss);
+  border-bottom: 1px solid var(--rule-d);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.speaker-portrait img {
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
 .bottle-tag {
+  margin-top: 34px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -963,9 +984,15 @@ em, .italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 4
   color: var(--ink-soft);
   letter-spacing: 0;
 }
-.bottle h3 { font-size: clamp(1.4rem, 2.4vw, 2rem); line-height: 1.15; }
+.bottle h3 {
+  margin-top: 24px;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  line-height: 1.15;
+}
+.bottle h3 + p { margin-top: 22px; }
 .bottle .speaker {
   margin-top: auto;
+  margin-bottom: 44px;
   padding-top: 28px;
   border-top: 1px dashed var(--rule-d);
   display: flex;
@@ -974,18 +1001,19 @@ em, .italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 4
   position: relative;
   z-index: 1;
 }
-.bottle .avatar {
-  width: 56px; height: 56px;
-  border-radius: 50%;
-  background: var(--deep);
-  color: var(--paper);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Fraunces', serif;
-  font-size: 1.1rem;
-}
-.bottle:nth-child(2) .avatar { background: var(--rust); }
 .bottle .s-name { font-family: 'Fraunces', serif; font-size: 1.15rem; }
 .bottle .s-aff { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); margin-top: 4px; }
+.bottle .s-abstract {
+  display: inline-flex;
+  margin-top: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--deep);
+  border-bottom: 1px solid currentColor;
+}
+.bottle .s-abstract:hover { color: var(--rust); }
 
 /* ===== Venue / Pula card ===== */
 .pula-grid {
@@ -2075,6 +2103,12 @@ em, .italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 4
   .cta-actions-row .btn { padding: 16px 22px; font-size: 0.76rem; }
   .gallery .photo { aspect-ratio: 4/3; height: auto; }
   .fees-feature .fees-lg .fee.featured { transform: none; box-shadow: 4px 4px 0 var(--abyss); }
+  .speaker-portrait { height: 280px; }
+  .bottle > :not(.speaker-portrait) {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+  .bottle .speaker { margin-bottom: 28px; }
 }
 @media (max-width: 520px) {
   .register { grid-template-columns: 1fr; }
