@@ -492,7 +492,7 @@ em, .italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 4
   font-family: 'Fraunces', serif;
   font-weight: 500;
   font-size: clamp(2.6rem, 11vw, 11rem);
-  line-height: 0.88;
+  line-height: 1.28;
   letter-spacing: -0.045em;
   word-break: break-word;
   color: #fff;
